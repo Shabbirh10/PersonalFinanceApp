@@ -3,7 +3,7 @@
 set -o errexit
 
 # Install dependencies
-poetry install
+poetry install --no-root
 
 # Convert static asset files
 poetry run python manage.py tailwind install
