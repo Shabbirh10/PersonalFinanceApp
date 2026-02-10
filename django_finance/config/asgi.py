@@ -14,6 +14,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE"))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE", "django_finance.config.settings.base"))
 
 application = get_asgi_application()
