@@ -105,12 +105,20 @@ WSGI_APPLICATION = "django_finance.config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+import sys
+print(f"DEBUG: DATABASE_URL={os.environ.get('DATABASE_URL')}", file=sys.stderr)
+
 DATABASES = {
     "default": dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
+        conn_health_checks=True,
     )
 }
+print(f"DEBUG: DATABASES={DATABASES}", file=sys.stderr)
 
 
 # Password validation
