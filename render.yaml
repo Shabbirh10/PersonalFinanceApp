@@ -22,3 +22,5 @@ services:
         value: django_finance.config.settings.base
       - key: DEBUG
         value: 'false'
+      - key: NODE_VERSION
+        value: "20.11.0"
