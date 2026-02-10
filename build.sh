@@ -18,4 +18,5 @@ poetry run python manage.py collectstatic --no-input
 ls -lh staticfiles/css/dist/styles.css
 
 # Apply any outstanding database migrations
-poetry run python manage.py migrate
+# Apply any outstanding database migrations
+# poetry run python manage.py migrate
