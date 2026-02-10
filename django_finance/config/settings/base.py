@@ -31,9 +31,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-#_!@")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") + [".onrender.com"]
+
+if not DEBUG:
+    # Tell Django to trust the X-Forwarded-Proto header set by the proxy
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [os.getenv("APP_URL", "http://localhost:8000"), "https://*.onrender.com"]
 
 
 
