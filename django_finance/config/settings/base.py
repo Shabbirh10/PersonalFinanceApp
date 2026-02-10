@@ -117,9 +117,8 @@ WSGI_APPLICATION = "django_finance.config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import sys
-print(f"DEBUG: DATABASE_URL present? {'DATABASE_URL' in os.environ}", file=sys.stderr)
-print(f"DEBUG: Env Keys: {list(os.environ.keys())}", file=sys.stderr)
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     "default": dj_database_url.config(
@@ -128,7 +127,9 @@ DATABASES = {
         conn_health_checks=True,
     )
 }
-print(f"DEBUG: DATABASES Configured Engine: {DATABASES['default']['ENGINE']}", file=sys.stderr)
+
+# Email Backend (Console for now to avoid 500 on missing SMTP)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Password validation
