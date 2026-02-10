@@ -8,8 +8,9 @@ services:
   - type: web
     name: fintrack
     env: python
+    plan: free
     buildCommand: "./build.sh"
-    startCommand: "poetry run python manage.py migrate && poetry run gunicorn django_finance.config.wsgi:application"
+    startCommand: "./start.sh"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -20,8 +21,8 @@ services:
       - key: WEB_CONCURRENCY
         value: "4"
       - key: DJANGO_SETTINGS_MODULE
-        value: django_finance.config.settings.base
+        value: "django_finance.config.settings.base"
       - key: DEBUG
-        value: 'false'
+        value: "false"
       - key: NODE_VERSION
         value: "20.11.0"
